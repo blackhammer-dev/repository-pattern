@@ -21,3 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResource('user', UserController::class);
 
+Route::get('/user/search/name',[UserController::class,'searchByName']);
