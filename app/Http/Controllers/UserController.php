@@ -6,13 +6,19 @@ use App\Http\Requests\SearchRequest;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Models\User;
+use App\Repositories\Eloquent\UserRepository;
 
 class UserController extends Controller
 {
+    private $userRepository;
+    public function __construct(UserRepository $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
 
     public function index()
     {
-        return User::all();
+        return $this->userRepository->all();
     }
 
     public function searchByName(SearchRequest $searchRequest)
