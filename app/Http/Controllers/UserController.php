@@ -11,6 +11,7 @@ use App\Repositories\Eloquent\UserRepository;
 class UserController extends Controller
 {
     private $userRepository;
+
     public function __construct(UserRepository $userRepository)
     {
         $this->userRepository = $userRepository;
@@ -23,10 +24,7 @@ class UserController extends Controller
 
     public function searchByName(SearchRequest $searchRequest)
     {
-        return User::where('name', 'like',
-            '%'
-            . $searchRequest->input('query_param')
-            . '%')->get();
+        return $this->userRepository->searchByKey('name', $searchRequest->input('query_param'));
     }
 
     public function store(UserRequest $request)
@@ -41,10 +39,10 @@ class UserController extends Controller
 
     public function update(UserUpdateRequest $request, $id)
     {
-        return $this->userRepository->update($id,$request->all());
+        return $this->userRepository->update($id, $request->all());
     }
 
-    public function destroy($id) : bool
+    public function destroy($id): bool
     {
         return $this->userRepository->delete($id);
     }
