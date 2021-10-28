@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Repositories\Eloquent\UserRepository;
-use App\Repositories\UserInterface;
+use App\Repositories\UserRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -12,7 +12,7 @@ class RepositoryServiceProvider extends ServiceProvider
     private function repositories(): array
     {
         return [
-            UserInterface::class => UserRepository::class
+            UserRepositoryInterface::class => UserRepository::class
         ];
     }
 

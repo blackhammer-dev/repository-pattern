@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Repositories\Eloquent;
+
 use App\Repositories\BaseRepositoryInterface;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
@@ -16,7 +18,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
      *
      * @param Model $model
      */
-     public function __construct(Model $model)
+    public function __construct(Model $model)
     {
         $this->model = $model;
     }

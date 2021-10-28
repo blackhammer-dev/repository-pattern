@@ -9,7 +9,6 @@ use Illuminate\Support\Collection;
 
 interface BaseRepositoryInterface
 {
-    public function __construct(Model $model);
 
     public function create(array $attributes): Model;
 
