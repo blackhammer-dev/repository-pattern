@@ -31,23 +31,21 @@ class UserController extends Controller
 
     public function store(UserRequest $request)
     {
-        return User::create($request->all());
+        return $this->userRepository->create($request->all());
     }
 
     public function show($id)
     {
-        return User::findOrFail($id);
+        return $this->userRepository->findOrFail($id);
     }
 
     public function update(UserUpdateRequest $request, $id)
     {
-        $user = User::findOrFail($id);
-        $user->update($request->all());
-        return $user;
+        return $this->userRepository->update($id,$request->all());
     }
 
-    public function destroy($id)
+    public function destroy($id) : bool
     {
-        return User::findOrFail($id)->delete();
+        return $this->userRepository->delete($id);
     }
 }

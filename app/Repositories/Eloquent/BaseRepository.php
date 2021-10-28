@@ -13,40 +13,40 @@ abstract class BaseRepository implements BaseRepositoryInterface
      */
     protected $model;
 
-    /**
-     * BaseRepository constructor.
-     *
-     * @param Model $model
-     */
     public function __construct(Model $model)
     {
         $this->model = $model;
     }
 
-    /**
-     * @param array $attributes
-     *
-     * @return Model
-     */
     public function create(array $attributes): Model
     {
         return $this->model->create($attributes);
     }
 
-    /**
-     * @param $id
-     * @return Model
-     */
     public function find($id): ?Model
     {
         return $this->model->find($id);
     }
 
-    /**
-     * @return Collection
-     */
+    public function findOrFail($id): ?Model
+    {
+        return $this->model->findOrFail($id);
+    }
+
     public function all(): Collection
     {
         return $this->model->all();
+    }
+
+    public function update($id,$params) : ?Model
+    {
+        $model = $this->findOrFail($id);
+        $model->update($params);
+        return $model;
+    }
+
+    public function delete($id) : bool
+    {
+        return $this->findOrFail($id)->delete();
     }
 }
